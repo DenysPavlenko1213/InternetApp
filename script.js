@@ -56,48 +56,76 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
-$(document).ready(function () {
+$(function () {
 
     // ============================
-    // 1. Animowane pojawianie sekcji
+    // 1. Licznik znaków
     // ============================
-    function revealSections() {
-        $("section").each(function () {
-            let top = $(this).offset().top;
-            let scroll = $(window).scrollTop();
-            let windowHeight = $(window).height();
+    $('#message').on('input', function () {
+        const max = 500;
+        const len = $(this).val().length;
+        $('#charCount').text(len + '/' + max);
+        $('#charCount').toggleClass('text-danger', len > max);
+    });
 
-            if (scroll + windowHeight > top + 100) {
-                $(this).addClass("section-visible");
+    // ============================
+    // 2. FAQ – slideToggle
+    // ============================
+    $('.faq-question').on('click', function () {
+        $(this).toggleClass('active');
+        $(this).next('.faq-answer').slideToggle();
+    });
+
+    // ============================
+    // 3. AJAX – wczytywanie newsów
+    // ============================
+    $('#loadNews').on('click', function () {
+        $.ajax({
+            url: 'news.json',
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                const $container = $('#newsContainer');
+                $container.empty();
+
+                data.forEach(function (item) {
+                    const card = `
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h3 class="h5 card-title">${item.title}</h3>
+                                    <p class="text-muted mb-1">${item.date}</p>
+                                    <p class="card-text">${item.content}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    const $card = $(card);
+                    $container.append($card.hide().fadeIn(300));
+                });
+            },
+            error: function () {
+                alert('Nie udało się wczytać aktualności.');
+            }
+        });
+    });
+
+    // ============================
+    // 4. Animowane pojawianie sekcji
+    // ============================
+    function revealOnScroll() {
+        $('section').each(function () {
+            const top = $(this).offset().top;
+            const scroll = $(window).scrollTop();
+            const height = $(window).height();
+
+            if (top < scroll + height - 100) {
+                $(this).addClass('section-visible');
             }
         });
     }
 
-    revealSections();
-    $(window).on("scroll", revealSections);
-
-
-    // ============================
-    // 2. FAQ – ręczny accordion
-    // ============================
-    $(".faq-question").on("click", function () {
-        $(this).toggleClass("active");
-        $(this).next(".faq-answer").slideToggle(300);
-    });
-
-
-    // ============================
-    // 3. Licznik znaków w formularzu
-    // ============================
-    $("#message").on("keyup", function () {
-        let length = $(this).val().length;
-        $("#charCount").text(length + "/500");
-
-        if (length > 500) {
-            $("#charCount").css("color", "red");
-        } else {
-            $("#charCount").css("color", "white");
-        }
-    });
-
+    $(window).on('scroll', revealOnScroll);
+    revealOnScroll();
 });
+

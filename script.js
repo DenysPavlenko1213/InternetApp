@@ -56,3 +56,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+$(document).ready(function () {
+
+    // ============================
+    // 1. Animowane pojawianie sekcji
+    // ============================
+    function revealSections() {
+        $("section").each(function () {
+            let top = $(this).offset().top;
+            let scroll = $(window).scrollTop();
+            let windowHeight = $(window).height();
+
+            if (scroll + windowHeight > top + 100) {
+                $(this).addClass("section-visible");
+            }
+        });
+    }
+
+    revealSections();
+    $(window).on("scroll", revealSections);
+
+
+    // ============================
+    // 2. FAQ – ręczny accordion
+    // ============================
+    $(".faq-question").on("click", function () {
+        $(this).toggleClass("active");
+        $(this).next(".faq-answer").slideToggle(300);
+    });
+
+
+    // ============================
+    // 3. Licznik znaków w formularzu
+    // ============================
+    $("#message").on("keyup", function () {
+        let length = $(this).val().length;
+        $("#charCount").text(length + "/500");
+
+        if (length > 500) {
+            $("#charCount").css("color", "red");
+        } else {
+            $("#charCount").css("color", "white");
+        }
+    });
+
+});

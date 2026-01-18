@@ -1,71 +1,151 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Denys Pavlenko 102084 Todo</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body>
-		<nav class="navigacja">
-			<div class="navigacja-inner">
-				<div class="navigacja-logo">
-					<div class="navigacja-logo">
-						Web page
-					</div>
-					<ul class="navigacja-linki">
-						<li><a href="#home">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#uslugi">Uslugi</a></li>
-						<li><a href="#contact">Contact</a></li>
+<html lang="pl">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Projekt Bootstrap – Denys Pavlenko</title>
+
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">Web Page</a>
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse justify-content-end" id="menu">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="#o-nas">O nas</a></li>
+					<li class="nav-item"><a class="nav-link" href="#oferta">Oferta</a></li>
+					<li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- HEADER -->
+	<header
+		class="min-vh-100 d-flex flex-column justify-content-center align-items-center text-center bg-dark text-light">
+		<img class="header-logo"
+			src="https://png.pngtree.com/png-clipart/20190611/original/pngtree-wolf-logo-png-image_2306634.jpg"
+			alt="logo">
+		<h1 class="display-4">Lorem ipsum dolo</h1>
+		<p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+		<a href="#o-nas" class="btn btn-primary mt-3">Dowiedz się więcej</a>
+	</header>
+
+	<!-- O NAS -->
+	<section id="o-nas" class="py-5 bg-dark text-light">
+		<div class="container">
+			<div class="row align-items-center">
+
+				<div class="col-md-6">
+					<h2>O nas</h2>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, est laudantium quasi odio
+						similique ex porro impedit sed inventore dignissimos.</p>
+				</div>
+
+				<div class="col-md-6">
+					<ul class="list-group">
+						<li class="list-group-item">Profesjonalne podejście</li>
+						<li class="list-group-item">Doświadczony zespół</li>
+						<li class="list-group-item">Najwyższa jakość usług</li>
 					</ul>
 				</div>
+
 			</div>
-		</nav>
-		<header id="home" class="header-full">
-			<div class="container">
-				<img class="header-logo" src="https://png.pngtree.com/png-clipart/20190611/original/pngtree-wolf-logo-png-image_2306634.jpg" alt="logo"/>
-				<h1 class="header-title">Lorem, ipsum dolo</h1>
-				<h3 class="header-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
-			</div>
-		</header>
-		<section id="about" class="centered-section">
-			<h2>O nas</h2>
-			Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia, est laudantium quasi odio similique ex porro impedit sed inventore dignissimos assumenda labore ipsam velit mollitia dolorum ab quae obcaecati numquam?
-		</section>
-		<section id="uslugi" class="centered-section">
-			<h2>Uslugi</h2>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. A similique nam laboriosam, nobis, sunt fugiat vel obcaecati ad sed quos porro perspiciatis quibusdam unde error non facilis impedit aliquid minima!
-		</section>
-		<section id="contact" class="centered-section contact-form">
-			<h2>Kontact</h2>
-			<form>
-				<div class="form-row">
-					<div class="form-field">
-						<label for="name">Imię</label>
-						<input type="text" id="name" name="name" placeholder="Enter name">
-					</div>
-					<div class="form-field">
-						<label for="email">Email</label>
-						<input type="email" id="email" name="email" placeholder="Enter email">
-					</div>
-					<div class="form-field">
-						<label for="temat">Temat</label>
-						<input type="text" id="temat" name="temat" placeholder="Enter temat">
-					</div>
-					<div class="form-field">
-						<label for="tresc">Treść</label>
-						<input type="text" id="tresc" name="tresc" placeholder="Enter Treść">
+		</div>
+	</section>
+
+	<!-- OFERTA -->
+	<section id="oferta" class="py-5">
+		<div class="container">
+			<h2 class="text-center mb-4">Oferta</h2>
+
+			<div class="row g-4">
+
+				<div class="col-sm-12 col-md-6 col-lg-4">
+					<div class="card h-100">
+						<div class="card-body">
+							<h5 class="card-title">Usługa 1</h5>
+							<p class="card-text">Opis usługi 1...</p>
+						</div>
 					</div>
 				</div>
-				<button type="submit">Send</button>
+
+				<div class="col-sm-12 col-md-6 col-lg-4">
+					<div class="card h-100">
+						<div class="card-body">
+							<h5 class="card-title">Usługa 2</h5>
+							<p class="card-text">Opis usługi 2...</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-md-6 col-lg-4">
+					<div class="card h-100">
+						<div class="card-body">
+							<h5 class="card-title">Usługa 3</h5>
+							<p class="card-text">Opis usługi 3...</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- KONTAKT -->
+	<section id="kontakt" class="py-5 bg-dark text-light">
+		<div class="container">
+			<h2 class="text-center mb-4">Kontakt</h2>
+
+			<form class="row g-3">
+
+				<div class="col-md-6">
+					<label class="form-label">Imię</label>
+					<input type="text" class="form-control" placeholder="Wpisz imię">
+				</div>
+
+				<div class="col-md-6">
+					<label class="form-label">Email</label>
+					<input type="email" class="form-control" placeholder="Wpisz email">
+				</div>
+
+				<div class="col-md-6">
+					<label class="form-label">Temat</label>
+					<input type="text" class="form-control" placeholder="Temat wiadomości">
+				</div>
+
+				<div class="col-md-6">
+					<label class="form-label">Treść</label>
+					<input type="text" class="form-control" placeholder="Treść wiadomości">
+				</div>
+
+				<div class="col-12 text-center">
+					<button type="submit" class="btn btn-primary">Wyślij</button>
+				</div>
+
 			</form>
-		</section>
-		<footer>
-			Stopka
-		</footer>
-		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-	</body>
+		</div>
+	</section>
+
+	<!-- FOOTER -->
+	<footer class="text-center py-3 bg-light text-dark">
+		Stopka
+	</footer>
+
+	<script src="script.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>

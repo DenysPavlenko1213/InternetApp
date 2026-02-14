@@ -7,13 +7,7 @@ body {
     max-width: 250px;
     margin-bottom: 20px;
 }
-
-html {
-    scroll-behavior: smooth;
-}
 section {
-    opacity: 0;
-    transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
@@ -22,7 +16,6 @@ section {
     transform: translateY(0);
 }
 
-/* FAQ */
 .faq-question {
     cursor: pointer;
     font-weight: 600;
@@ -34,4 +27,26 @@ section {
     color: #ddd;
 }
 
+.plan-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+}
 
+.plan-price {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #b388ff;
+    margin-bottom: 20px;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+.plan-features li {
+    padding: 8px 0;
+    border-bottom: 1px solid #333;
+}

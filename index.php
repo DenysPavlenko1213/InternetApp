@@ -1,66 +1,35 @@
-<?php session_start(); ?>
+<?php session_start();
+require("db.php");
+$stmt = $pdo->query("SELECT * FROM plans ORDER BY price ASC");
+$plans = $stmt->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Projekt Bootstrap – Denys Pavlenko</title>
-
-	<!-- Bootstrap 5 CSS -->
+	<title>Rent Lion</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="profile.css">
 </head>
 
 <body>
 
-	<!-- NAVBAR -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-		<div class="container">
-			<a class="navbar-brand" href="#">Web Page</a>
-
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse justify-content-end" id="menu">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="#o-nas">O nas</a></li>
-					<li class="nav-item"><a class="nav-link" href="#oferta">Oferta</a></li>
-					<li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
-					<?php if (isset($_SESSION["email"])): ?>
-						<li class="nav-item">
-							<a class="nav-link" href="profile.php">
-								<?= htmlspecialchars($_SESSION["email"]) ?>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-danger" href="logout.php">Logout</a>
-						</li>
-					<?php else: ?>
-						<li class="nav-item">
-							<a class="nav-link" href="login.php">Login</a>
-						</li>
-					<?php endif; ?>
-
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<?php include "navbar.php"; ?>
 
 	<!-- HEADER -->
 	<header
-		class="min-vh-100 d-flex flex-column justify-content-center align-items-center text-center bg-dark text-light">
-		<img class="header-logo"
-			src="https://png.pngtree.com/png-clipart/20190611/original/pngtree-wolf-logo-png-image_2306634.jpg"
+		class="min-vh-50 d-flex flex-column justify-content-center align-items-center text-center container py-5">
+		<img class="header-logo" src="images\toppng.com-red-lion-clip-art-at-clker-red-lion-logo-600x366.png"
 			alt="logo">
-		<h1 class="display-4">Lorem ipsum dolo</h1>
-		<p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-		<a href="#o-nas" class="btn btn-primary mt-3">Dowiedz się więcej</a>
+		<h1 class="display-4">VPS Serwery</h1>
+		<a href="#oferta" class="btn btn-primary mt-3">Dowiedz się więcej</a>
 	</header>
 
 	<!-- O NAS -->
-	<section id="o-nas" class="py-5 bg-dark text-light">
+	<section id="o-nas" class="container py-5">
 		<div class="container">
 			<div class="row align-items-center">
 
@@ -83,67 +52,27 @@
 	</section>
 
 	<!-- OFERTA -->
-	<section id="oferta" class="py-5">
-		<div class="container">
-			<h2 class="text-center mb-4">Oferta</h2>
-			<div class="row g-4">
-
-				<div class="col-sm-12 col-md-6 col-lg-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<h5 class="card-title">Usługa 1</h5>
-							<p class="card-text">Opis usługi 1...</p>
-						</div>
+	<section id="oferta" class="container py-5">
+		<h1 class="text-center mb-5">Wybierz swój VPS</h1>
+		<div class="row g-4"> 
+			<?php foreach ($plans as $p): ?>
+				<div class="col-md-4">
+					<div class="vps-card">
+						<h3 class="plan-title"><?= htmlspecialchars($p["name"]) ?></h3>
+						<p class="plan-price"><?= $p["price"] ?> zł / mies</p>
+						<ul class="plan-features">
+							<li><strong>CPU:</strong> <?= htmlspecialchars($p["cpu"]) ?></li>
+							<li><strong>RAM:</strong> <?= htmlspecialchars($p["ram"]) ?></li>
+							<li><strong>Dysk:</strong> <?= htmlspecialchars($p["storage"]) ?></li>
+							<li><strong>Transfer:</strong> <?= htmlspecialchars($p["bandwidth"]) ?></li>
+						</ul> <a href="vps_details.php?id=<?= $p["id"] ?>" class="btn btn-warning text-light w-100">Zobacz szczegóły</a>
 					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-6 col-lg-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<h5 class="card-title">Usługa 2</h5>
-							<p class="card-text">Opis usługi 2...</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-6 col-lg-4">
-					<div class="card h-100">
-						<div class="card-body">
-							<h5 class="card-title">Usługa 3</h5>
-							<p class="card-text">Opis usługi 3...</p>
-						</div>
-					</div>
-				</div>
-
-			</div>
-			<div class="mt-5">
-				<h3>FAQ</h3>
-
-				<div class="faq-item">
-					<h5 class="faq-question">Jak długo trwa realizacja?</h5>
-					<div class="faq-answer" style="display: none;">
-						Zwykle od 3 do 7 dni roboczych.
-					</div>
-				</div>
-
-				<div class="faq-item">
-					<h5 class="faq-question">Czy oferujecie wsparcie techniczne?</h5>
-					<div class="faq-answer" style="display: none;">
-						Tak, zapewniamy pełne wsparcie po realizacji projektu.
-					</div>
-				</div>
-
-				<div class="faq-item">
-					<h5 class="faq-question">Czy mogę zamówić indywidualny projekt?</h5>
-					<div class="faq-answer" style="display: none;">
-						Oczywiście — tworzymy projekty na zamówienie.
-					</div>
-				</div>
-			</div>
-
+				</div> 
+			<?php endforeach; ?>
 		</div>
-	</section>
-	<section id="aktualnosci" class="py-5 bg-secondary">
+		</section>
+	<!-- AKTUALNOSCI -->
+	<section id="aktualnosci" class="container py-5">
 		<div class="container">
 			<h2 class="mb-4 text-light">Aktualności</h2>
 
@@ -156,7 +85,7 @@
 	</section>
 
 	<!-- KONTAKT -->
-	<section id="kontakt" class="py-5 bg-dark text-light">
+	<section id="kontakt" class="container py-5">
 		<div class="container">
 			<h2 class="text-center mb-4">Kontakt</h2>
 
